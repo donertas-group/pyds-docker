@@ -8,11 +8,6 @@ RUN apt-get update
 # Install software
 RUN apt-get install -y --no-install-recommends git-lfs
 
-# Install typst
-RUN curl -fsSL https://github.com/typst/typst/releases/download/v0.10.0/typst-x86_64-unknown-linux-musl.tar.xz | tar -xJ -C /tmp/ && \
-    mv /tmp/typst-x86_64-unknown-linux-musl/typst /usr/local/bin/ && \
-    rm -rf /tmp/typst-x86_64-unknown-linux-musl
-
 # Install Python packages
 RUN apt-get install -y --no-install-recommends \
     python3-numpy \

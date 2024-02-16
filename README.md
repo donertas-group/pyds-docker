@@ -12,9 +12,6 @@ The following Python packages are included:
 * `torch`
 * `matplotlib + plotnine`
 
-Other useful software included:
-* `typst.app`
-
 ## Usage
 To build from this image use the following as the first line of your Dockerfile:
 ```Dockerfile
