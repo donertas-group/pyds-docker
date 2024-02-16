@@ -15,6 +15,13 @@ The following Python packages are included:
 Other useful software included:
 * `typst.app`
 
+## Usage
+To build from this image use the following as the first line of your Dockerfile:
+```Dockerfile
+FROM ghcr.io/donertas-group/pyds-docker:latest
+...
+```
+
 ## Build & Push to GHCR
 The preferred way of building the image is manually. Set an appropriate `TAG` in the `Makefile` and do:
 
