@@ -2,42 +2,34 @@
 <!-- [![Build Docker image](https://github.com/donertas-group/rdev-docker/actions/workflows/build-image.yml/badge.svg)](https://github.com/donertas-group/rdev-docker/actions/workflows/build-image.yml) -->
 
 A Python-based Docker image for data science and deep learning.
-The image is based on the NVIDIA PyTorch [Docker image](https://catalog.ngc.nvidia.com/orgs/nvidia/containers/pytorch), and runs Ubuntu 22.04 and Python 3.10.12
+The image is based on the NVIDIA PyTorch [Docker image](https://catalog.ngc.nvidia.com/orgs/nvidia/containers/pytorch), and runs Ubuntu 22.04 and Python 3.10.12. Currently only AMD64 architectures are supported.
 
 The following Python packages are included:
 * `numpy`
 * `scipy`
 * `pandas`
 * `sklearn`
+* `torch`
 * `matplotlib + plotnine`
 
-## Usage
-TODO
+Other useful software included:
+* `typst.app`
 
 ## Build & Push to GHCR
-Trigger the workflow using the GitHub CLI:
-    
-```bash
-# Login to GitHub
-gh auth login
+The preferred way of building the image is manually. Set an appropriate `TAG` in the `Makefile` and do:
 
-# Trigger workflow
-gh workflow run build-image.yml
+```bash
+# Build and push images
+make all
 ```
 
-<details>
-  <summary>Or build locally</summary>
-    
-    ```bash
-    # Build images
-    docker build --platform linux/amd64 -t ghcr.io/donertas-group/rdev-docker:<tag>-amd64 .
+Pushing to GHCR requires a login, which can be achieved via a Github Token, see the [Github docs](https://docs.github.com/en/packages/working-with-a-github-packages-registry/working-with-the-container-registry#authenticating-to-the-container-registry) for token creation.
+Once created do
 
-    # Push images
-    docker push ghcr.io/donertas-group/rdev-docker:<tag>-amd64
-    ```
-
-</details>
-
+```bash
+export CR_PAT=YOUR_TOKEN
+echo $CR_PAT | docker login ghcr.io -u USERNAME --password-stdin
+```
 
 ## Contact
 Mark Olenik <mark.olenik@gmail.com>

@@ -19,15 +19,13 @@ RUN apt-get install -y --no-install-recommends \
     python3-scipy \
     python3-pandas \
     python3-sklearn \
+    python3-matplotlib \
     python3-ipykernel \
-    python3-ipython \
-    python3-matplotlib
-
+    python3-ipython 
 
 # Install Python packages from PyPi
 RUN pip install \
     plotnine 
-
 
 ENV DEBIAN_FRONTEND=dialog
 
