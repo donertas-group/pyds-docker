@@ -1,12 +1,12 @@
-SHELL = /bin/sh
+# Set package version
+VERSION = 1.0.0
 
 # Directories & files
+SHELL = /bin/sh
 PROJECT_NAME = pyds-docker
-
-VERSION = 1.0.0
-IMAGE_NAME = ghcr.io/donertas-group/pyds-docker
+REGISTRY = ghcr.io/donertas-group
+IMAGE_NAME = $(REGISTRY)/$(PROJECT_NAME)
 PLATFORM = linux/amd64
-
 
 ## Build image
 .PHONY: build
@@ -23,7 +23,6 @@ push:
 	@echo "Pushing image to GHCR"
 	@docker push $(IMAGE_NAME):$(VERSION)
 	@docker push $(IMAGE_NAME):latest
-
 
 ## Build & push image
 all: build push
