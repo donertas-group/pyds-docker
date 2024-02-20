@@ -21,10 +21,6 @@ RUN apt-get install -y --no-install-recommends \
 # Silence pip new version warnings
 RUN pip config set global.disable-pip-version-check true
 
-# Install Python packages from PyPi
-RUN pip install \
-    plotnine 
-
 ENV DEBIAN_FRONTEND=dialog
 
 # Store bash history
