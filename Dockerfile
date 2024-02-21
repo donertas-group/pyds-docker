@@ -21,12 +21,25 @@ RUN apt-get install -y --no-install-recommends \
 # Silence pip new version warnings
 RUN pip config set global.disable-pip-version-check true
 
+# -------------------- Add non-root user for devcontainers ------------------- #
+ARG USERNAME=user
+ARG USER_UID=3131
+ARG USER_GID=$USER_UID
+
+# Create the user
+RUN groupadd --gid $USER_GID $USERNAME \
+    && useradd --uid $USER_UID --gid $USER_GID -m $USERNAME \
+    #
+    # Add sudo support. Omit if you don't need to install software after connecting.
+    && apt-get update \
+    && apt-get install -y sudo \
+    && echo $USERNAME ALL=\(root\) NOPASSWD:ALL > /etc/sudoers.d/$USERNAME \
+    && chmod 0440 /etc/sudoers.d/$USERNAME
+
+# Set the default user.
+USER $USERNAME
+
+# ---------------------------------------------------------------------------- #
+
 ENV DEBIAN_FRONTEND=dialog
-
-# Store bash history
-RUN SNIPPET="export PROMPT_COMMAND='history -a' && export HISTFILE=/commandhistory/.bash_history" \
-    && echo $SNIPPET >> ~/.bashrc
-# Pretty prompt
-RUN echo 'export PS1="🐳 \[\033[1;36m\][\u@docker] \[\033[1;34m\]\W\[\033[0;35m\] # \[\033[0m\]"' >> ~/.bashrc
-
 CMD ["bash"]
