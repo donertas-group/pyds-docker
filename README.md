@@ -1,7 +1,7 @@
-# README
-<!-- [![Build Docker image](https://github.com/donertas-group/rdev-docker/actions/workflows/build-image.yml/badge.svg)](https://github.com/donertas-group/rdev-docker/actions/workflows/build-image.yml) -->
 
-A Python-based Docker image for data science and deep learning in bioinformatics.
+[![Version](https://img.shields.io/badge/version-$(shell cat Makefile | grep "VERSION" | cut -d'=' -f2)-blue.svg)](https://github.com/donertas-group/rdev-docker/releases)
+
+An opinionated Python-based Docker image for data science and deep learning in bioinformatics.
 The image is based on the NVIDIA PyTorch [Docker image](https://catalog.ngc.nvidia.com/orgs/nvidia/containers/pytorch), and runs Ubuntu 22.04 and Python 3.10.12. Currently only AMD64 architectures are supported.
 
 The following Python packages are included:
@@ -34,6 +34,9 @@ Once created do
 export CR_PAT=YOUR_TOKEN
 echo $CR_PAT | docker login ghcr.io -u USERNAME --password-stdin
 ```
+
+## TODO
+- [ ] Copy fish config in dockerfile, see `./config.fish`.
 
 ## Contact
 Mark Olenik <mark.olenik@gmail.com>

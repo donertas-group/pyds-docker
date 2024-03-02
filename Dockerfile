@@ -9,34 +9,49 @@ RUN apt-get update \
     # Git-LFS for files larger than 100 MB
     git-lfs \
     # .NET SDK for devcontainers
-    aspnetcore-runtime-8.0
+    aspnetcore-runtime-8.0 \
+    # Fish shell
+    fish
 
 # Silence pip's warnings
 ENV PIP_ROOT_USER_ACTION=ignore \
     PIP_DISABLE_PIP_VERSION_CHECK=true
 
 # Install main Python packages
-RUN pip install \
+RUN python3 -m pip install \
+    # The version constraints come from torch's cudf dependency
     'pandas<1.6' \
-    numpy \
-    scipy \
-    scikit-learn \
-    matplotlib \
-    plotnine
+    'numpy<1.25' \
+    'scipy' \
+    'scikit-learn' \
+    'matplotlib' \
+    'altair' \
+    'vega_datasets'
 
 # Install bioinformatics Python tools 
-RUN pip install \
-    scikit-bio \
-    anndata \
-    biopython \
-    gemelli 
+RUN python3 -m pip install \
+    'scikit-bio' \
+    'anndata' \
+    'biopython' \
+    'scanpy[leiden]' \
+    'gemelli' 
 
 # Install dev packages (optional)
-RUN pip install \
-    ipykernel \ 
-    ipython
+RUN python3 -m pip install \
+    'ipykernel' \ 
+    'ipython' \
+    'mypy' \
+    'pandas-stubs' \
+    'matplotlib-stubs'
 
 # ---------------------------------------------------------------------------- #
+# Autoreload in Python
+RUN echo "c.InteractiveShellApp.exec_lines = ['%load_ext autoreload', \
+    '%autoreload 2']" > "$(ipython locate)/profile_default/ipython_config.py"
 
 ENV DEBIAN_FRONTEND=dialog
+
+# Setup fish shell 🐟
+RUN chsh -s $(which fish)
+
 CMD ["bash"]
