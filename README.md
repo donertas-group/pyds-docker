@@ -1,5 +1,6 @@
-
-[![Version](https://img.shields.io/badge/version-$(shell cat Makefile | grep "VERSION" | cut -d'=' -f2)-blue.svg)](https://github.com/donertas-group/rdev-docker/releases)
+# PyDS Docker
+[![Latest Tag](https://ghcr-badge.egpl.dev/donertas-group/pyds-docker/latest_tag?trim=major&label=latest)](https://github.com/donertas-group/pyds-docker/pkgs/container/pyds-docker)
+[![Image Size](https://ghcr-badge.egpl.dev/donertas-group/pyds-docker/size?tag=latest&label=image%20size)](https://github.com/donertas-group/pyds-docker/pkgs/container/pyds-docker)
 
 An opinionated Python-based Docker image for data science and deep learning in bioinformatics.
 The image is based on the NVIDIA PyTorch [Docker image](https://catalog.ngc.nvidia.com/orgs/nvidia/containers/pytorch), and runs Ubuntu 22.04 and Python 3.10.12. Currently only AMD64 architectures are supported.
