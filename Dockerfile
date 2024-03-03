@@ -10,6 +10,8 @@ RUN apt-get update \
     git-lfs \
     # .NET SDK for devcontainers
     aspnetcore-runtime-8.0 \
+    # HDF5
+    hdf5-tools \
     # Fish shell
     fish
 
@@ -21,7 +23,7 @@ ENV PIP_ROOT_USER_ACTION=ignore \
 RUN python3 -m pip install \
     # The version constraints come from torch's cudf dependency
     'pandas<1.6' \
-    'numpy<1.25' \
+    'numpy<=1.24' \
     'scipy' \
     'scikit-learn' \
     'matplotlib' \
@@ -33,7 +35,7 @@ RUN python3 -m pip install \
     'scikit-bio' \
     'anndata' \
     'biopython' \
-    'scanpy[leiden]' \
+    'scanpy' \
     'gemelli' 
 
 # Install dev packages (optional)
