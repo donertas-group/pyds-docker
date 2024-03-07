@@ -11,7 +11,8 @@ The following Python packages are included:
 * `pandas`
 * `sklearn`
 * `torch`
-* `matplotlib + plotnine`
+* `matplotlib`
+* `scanpy`
 
 ## Usage
 To build from this image use the following as the first line of your Dockerfile:
@@ -35,9 +36,6 @@ Once created do
 export CR_PAT=YOUR_TOKEN
 echo $CR_PAT | docker login ghcr.io -u USERNAME --password-stdin
 ```
-
-## TODO
-- [ ] Copy fish config in dockerfile, see `./config.fish`.
 
 ## Contact
 Mark Olenik <mark.olenik@gmail.com>
