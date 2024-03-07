@@ -1,5 +1,5 @@
-# Set package version
-VERSION = 1.1.0
+# Set package version (MAJOR.MINOR.PATCH)
+VERSION = 1.1.2
 
 # Directories & files
 SHELL = /bin/sh
@@ -11,7 +11,7 @@ PLATFORM = linux/amd64
 
 ARGS ?=
 .PHONY: build
-build: ## Build the Docker image. Use ARGS="--no-cache" to build without cache.
+build: Dockerfile config.fish ## Build the Docker image. Use ARGS="--no-cache" to build without cache.
 	@echo "Building image"
 	@docker build \
 		$(ARGS) \

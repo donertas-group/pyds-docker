@@ -19,32 +19,15 @@ RUN apt-get update \
 ENV PIP_ROOT_USER_ACTION=ignore \
     PIP_DISABLE_PIP_VERSION_CHECK=true
 
-# Install main Python packages
+# Install Python packages
 RUN python3 -m pip install \
-    # The version constraints come from torch's cudf dependency
-    'pandas<1.6' \
-    'numpy<=1.24' \
-    'scipy' \
-    'scikit-learn' \
-    'matplotlib' \
     'altair' \
-    'vega_datasets'
-
-# Install bioinformatics Python tools 
-RUN python3 -m pip install \
-    'scikit-bio' \
-    'anndata' \
-    'biopython' \
-    'scanpy' \
-    'gemelli' 
+    'scanpy'
 
 # Install dev packages (optional)
 RUN python3 -m pip install \
     'ipykernel' \ 
-    'ipython' \
-    'mypy' \
-    'pandas-stubs' \
-    'matplotlib-stubs'
+    'ipython'
 
 # ---------------------------------------------------------------------------- #
 # Autoreload in Python
@@ -55,5 +38,6 @@ ENV DEBIAN_FRONTEND=dialog
 
 # Setup fish shell 🐟
 RUN chsh -s $(which fish)
+COPY ./config.fish /root/.config/fish/config.fish
 
-CMD ["bash"]
+WORKDIR /root
