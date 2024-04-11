@@ -1,5 +1,5 @@
 # Set package version (MAJOR.MINOR.PATCH)
-VERSION = 1.1.2
+VERSION = 1.1.3
 
 # Directories & files
 SHELL = /bin/sh
