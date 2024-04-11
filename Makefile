@@ -21,14 +21,15 @@ build: Dockerfile config.fish ## Build the Docker image. Use ARGS="--no-cache" t
 
 
 .PHONY: push
-push: ## Push image to GHCR
+push: ## Push image to GHCR.
 	@echo "Pushing image to GHCR"
 	@docker push $(IMAGE_NAME):$(VERSION)
 	@docker push $(IMAGE_NAME):latest
 
 
-## Build & push image
-all: build push
+
+.PHONY: all
+all: build push  ## Build & push image.
 
 
 .PHONY: help
