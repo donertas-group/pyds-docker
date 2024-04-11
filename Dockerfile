@@ -22,7 +22,15 @@ ENV PIP_ROOT_USER_ACTION=ignore \
 # Install Python packages
 RUN python3 -m pip install \
     'altair' \
-    'scanpy'
+    'scanpy' \
+    'muon' \
+    'tqdm' \
+    'altair' \
+    'vega' \
+    # For large tables in altair
+    'vegafusion[embed]>=1.4.0' \
+    'cytoolz'
+    
 
 # Install dev packages (optional)
 RUN python3 -m pip install \
